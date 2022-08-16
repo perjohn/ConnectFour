@@ -1,9 +1,14 @@
 import pandas as pd
 
+from app.game.player import Player
+
 
 class Game:
     def __init__(self):
         self.board_state: pd.DataFrame = self._initialize_board()
+
+    def move(self, row: int, player: Player):
+        pass
 
     @staticmethod
     def _initialize_board() -> pd.DataFrame:
