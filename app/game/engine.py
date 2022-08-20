@@ -1,3 +1,5 @@
+from pandas import Series
+
 from app.game.game import Game
 from app.game.move_result import MoveResult
 from app.game.player import Player
@@ -7,15 +9,15 @@ class Engine:
     # def __init__(self):
     #     self.game = ConnectFourGame()
 
-    def move(self, row: int, player: Player, game: Game) -> (MoveResult, Game):
-        validation_result = self.validate(row, player, game)
+    def move(self, column: int, player: Player, game: Game) -> (MoveResult, Game):
+        validation_result = self.validate(column, player, game)
         if validation_result != MoveResult.OK:
             return validation_result, game
-        game = self.make_move(row, player, game)
+        game = self.make_move(column, player, game)
         return validation_result, game
 
-    def validate(self, row: int, player: Player, game: Game) -> MoveResult:
-        if not -1 < row < 7:
+    def validate(self, column: int, player: Player, game: Game) -> MoveResult:
+        if not -1 < column < 7:
             return MoveResult.ILLEGAL_MOVE
         sum_board_values = game.sum_board_values()
         if player == Player.RED and sum_board_values != 0:
@@ -24,5 +26,12 @@ class Engine:
             return MoveResult.ILLEGAL_MOVE
         return MoveResult.OK
 
-    def make_move(self, row, player, game):
-        pass
+    def make_move(self, column: int, player: Player, game: Game):
+        game_column = game.get_column(column)
+        row = self._find_row_for_move(game_column)
+        game.board_state.at[row, column] = player.value
+        return game
+
+    def _find_row_for_move(self, row: Series):
+        zero_indexes = row[row == 0]
+        return zero_indexes.index[-1]

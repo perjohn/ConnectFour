@@ -25,3 +25,6 @@ class Game:
 
     def sum_board_values(self) -> int:
         return self.board_state.values.sum()
+
+    def get_column(self, index: int):
+        return self.board_state.iloc[:, index]

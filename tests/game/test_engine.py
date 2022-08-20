@@ -2,12 +2,23 @@ from app.game.engine import Engine
 from app.game.game import Game
 from app.game.move_result import MoveResult
 from app.game.player import Player
+from tests.game.test_game import is_game_equal
 
 
 def test_move():
     engine = Engine()
     result, game = engine.move(0, Player.RED, Game())
     assert result == MoveResult.OK
+
+    expected = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0],
+    ]
+    assert is_game_equal(game, expected) is True
 
 
 def test_illegal_move_row():
