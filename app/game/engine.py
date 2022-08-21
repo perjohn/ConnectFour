@@ -24,6 +24,8 @@ class Engine:
             return MoveResult.ILLEGAL_MOVE
         elif player == Player.YELLOW and sum_board_values != 1:
             return MoveResult.ILLEGAL_MOVE
+        if not self._space_left_for_player_in_row(game.get_column(column)):
+            return MoveResult.ILLEGAL_MOVE
         return MoveResult.OK
 
     def make_move(self, column: int, player: Player, game: Game):
@@ -32,6 +34,10 @@ class Engine:
         game.board_state.at[row, column] = player.value
         return game
 
-    def _find_row_for_move(self, row: Series):
-        zero_indexes = row[row == 0]
+    def _space_left_for_player_in_row(self, game_column: Series) -> bool:
+        zero_indexes = game_column[game_column == 0]
+        return not zero_indexes.empty
+
+    def _find_row_for_move(self, game_column: Series):
+        zero_indexes = game_column[game_column == 0]
         return zero_indexes.index[-1]

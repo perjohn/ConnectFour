@@ -1,5 +1,4 @@
 from app.game.game import Game
-from app.game.player import Player
 
 
 def test_initialize():
