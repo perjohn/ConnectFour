@@ -41,13 +41,32 @@ class Game:
         return zero_indexes.index[-1]
 
     def is_win(self) -> bool:
+        # vertical
         for column_idx in range(0, NR_OF_COLUMNS):
             for row_idx in range(0, 3):
                 if abs(sum(self.board_state.iloc[:, column_idx][row_idx:row_idx + 4])) == 4:
                     return True
-
+        # horizontal
         for row_idx in range(0, NR_OF_ROWS):
             for column_idx in range(0, 4):
                 if abs(sum(self.board_state.iloc[row_idx, :][column_idx:column_idx + 4])) == 4:
+                    return True
+
+        # diagonal down
+        for col_idx in range(0, 4):
+            for row_idx in range(0, 3):
+                diag_sum = 0
+                for i in range(0, 4):
+                    diag_sum += abs(self.board_state.at[row_idx + i, col_idx + i])
+                if diag_sum == 4:
+                    return True
+
+        # diagonal up
+        for col_idx in range(0, 4):
+            for row_idx in range(5, 2, -1):
+                diag_sum = 0
+                for i in range(0, 4):
+                    diag_sum += abs(self.board_state.at[row_idx - i, col_idx + i])
+                if diag_sum == 4:
                     return True
         return False
