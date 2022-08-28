@@ -4,6 +4,7 @@ from pandas import Series
 from app.game.player import Player
 
 NR_OF_COLUMNS = 7
+NR_OF_ROWS = 6
 
 
 class Game:
@@ -41,7 +42,12 @@ class Game:
 
     def is_win(self) -> bool:
         for column_idx in range(0, NR_OF_COLUMNS):
-            for row_idx in range(0, 4):
-                if abs(sum(self.board_state.iloc[:, column_idx][2:6])) == 4:
+            for row_idx in range(0, 3):
+                if abs(sum(self.board_state.iloc[:, column_idx][row_idx:row_idx + 4])) == 4:
+                    return True
+
+        for row_idx in range(0, NR_OF_ROWS):
+            for column_idx in range(0, 4):
+                if abs(sum(self.board_state.iloc[row_idx, :][column_idx:column_idx + 4])) == 4:
                     return True
         return False

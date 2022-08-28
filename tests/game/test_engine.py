@@ -64,7 +64,7 @@ def test_illegal_move_full_column():
     assert result == MoveResult.ILLEGAL_MOVE
 
 
-def test_win_red():
+def test_win_red_vertical():
     engine = Engine()
     _, _ = engine.move(0, Player.RED)
     _, _ = engine.move(1, Player.YELLOW)
