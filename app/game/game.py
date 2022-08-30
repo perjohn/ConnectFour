@@ -57,8 +57,8 @@ class Game:
             for row_idx in range(0, 3):
                 diag_sum = 0
                 for i in range(0, 4):
-                    diag_sum += abs(self.board_state.at[row_idx + i, col_idx + i])
-                if diag_sum == 4:
+                    diag_sum += self.board_state.at[row_idx + i, col_idx + i]
+                if abs(diag_sum) == 4:
                     return True
 
         # diagonal up
@@ -66,7 +66,10 @@ class Game:
             for row_idx in range(5, 2, -1):
                 diag_sum = 0
                 for i in range(0, 4):
-                    diag_sum += abs(self.board_state.at[row_idx - i, col_idx + i])
-                if diag_sum == 4:
+                    diag_sum += self.board_state.at[row_idx - i, col_idx + i]
+                if abs(diag_sum) == 4:
                     return True
         return False
+
+    def is_draw(self):
+        return 0 not in self.board_state.values
