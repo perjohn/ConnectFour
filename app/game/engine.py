@@ -13,7 +13,7 @@ class Engine:
         move_result = self.validate(column, player)
         if move_result != MoveResult.OK:
             return move_result, self.game
-        self.make_move(column, player, self.game)
+        self.make_move(column, player)
         if self.is_win():
             move_result = MoveResult.WIN_RED if player == Player.RED else MoveResult.WIN_YELLOW
         return move_result, self.game
@@ -26,16 +26,12 @@ class Engine:
             return MoveResult.ILLEGAL_MOVE
         elif player == Player.YELLOW and sum_board_values != 1:
             return MoveResult.ILLEGAL_MOVE
-        if not self._space_left_for_player_in_row(self.game.get_column(column)):
+        if not self.game.space_left_for_player_in_row(column):
             return MoveResult.ILLEGAL_MOVE
         return MoveResult.OK
 
     def is_win(self) -> bool:
         return self.game.is_win()
 
-    def make_move(self, column: int, player: Player, game: Game):
-        game.move(column, player)
-
-    def _space_left_for_player_in_row(self, game_column: Series) -> bool:
-        zero_indexes = game_column[game_column == 0]
-        return not zero_indexes.empty
+    def make_move(self, column: int, player: Player):
+        self.game.move(column, player)
