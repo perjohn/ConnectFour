@@ -1,5 +1,5 @@
-from app.connect_four_bot.random_bot import RandomBot
-from app.game.game import Game
+from app.bot.random_bot import RandomBot
+from app.game.game import Game, NR_OF_COLUMNS
 from app.game.player import Player
 
 
@@ -7,8 +7,8 @@ def test_random_move_empty():
     game = Game()
     random_bot = RandomBot(game)
 
-    result = random_bot.calculate_move()
-    assert 0 <= result <= 6
+    result = random_bot.calculate_move(Player.RED)
+    assert 0 <= result < NR_OF_COLUMNS
 
 
 def test_random_move_first_column_filled():
@@ -22,5 +22,5 @@ def test_random_move_first_column_filled():
     game.board_state.at[1, 0] = Player.RED.value
     game.board_state.at[0, 0] = Player.YELLOW.value
 
-    result = random_bot.calculate_move()
-    assert 1 <= result <= 6
+    result = random_bot.calculate_move(Player.RED)
+    assert 1 <= result < NR_OF_COLUMNS

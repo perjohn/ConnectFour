@@ -74,7 +74,7 @@ class Game:
     def is_draw(self):
         return 0 not in self.board_state.values
 
-    def space_left_for_player_in_row(self, column: int) -> bool:
+    def space_left_for_player_in_column(self, column: int) -> bool:
         game_column = self.get_column(column)
         zero_indexes = game_column[game_column == 0]
         return not zero_indexes.empty

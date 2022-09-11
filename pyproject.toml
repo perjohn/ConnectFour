@@ -8,6 +8,7 @@ authors = ["perjohn <p.john@keplervision.eu>"]
 python = "^3.9"
 fastapi = "^0.79.0"
 pandas = "^1.4.3"
+uvicorn = "^0.18.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

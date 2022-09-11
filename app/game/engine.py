@@ -26,7 +26,7 @@ class Engine:
             return MoveResult.ILLEGAL_MOVE
         elif player == Player.YELLOW and sum_board_values != 1:
             return MoveResult.ILLEGAL_MOVE
-        if not self.game.space_left_for_player_in_row(column):
+        if not self.game.space_left_for_player_in_column(column):
             return MoveResult.ILLEGAL_MOVE
         return MoveResult.OK
 
