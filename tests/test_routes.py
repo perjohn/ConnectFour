@@ -13,6 +13,20 @@ def test_new_game(test_client):
     assert len(response_json['board'][0]) == 7
 
 
+def test_move(test_client):
+    response = test_client.get('api/v1/new-match')
+    assert response.status_code == 200
+
+    response = test_client.get('api/v1/move/1/3')
+    assert response.status_code == 200
+    response_json = response.json()
+    assert 'board' in response_json
+    board = response_json['board']
+    assert len(board) == 6
+    assert len(board[0]) == 7
+    assert board[5][3] == 1
+
+
 @pytest.fixture
 def test_client():
     return TestClient(app)

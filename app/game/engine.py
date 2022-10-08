@@ -10,7 +10,7 @@ class Engine:
         self.game = Game()
 
     def move(self, column: int, player: Player) -> (MoveResult, Game):
-        move_result = self.validate(column, player)
+        move_result = self.validate_move(column, player)
         if move_result != MoveResult.OK:
             return move_result, self.game
         self.make_move(column, player)
@@ -18,7 +18,7 @@ class Engine:
             move_result = MoveResult.WIN_RED if player == Player.RED else MoveResult.WIN_YELLOW
         return move_result, self.game
 
-    def validate(self, column: int, player: Player) -> MoveResult:
+    def validate_move(self, column: int, player: Player) -> MoveResult:
         if not -1 < column < 7:
             return MoveResult.ILLEGAL_MOVE
         sum_board_values = self.game.sum_board_values()
