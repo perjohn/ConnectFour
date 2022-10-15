@@ -1,8 +1,19 @@
 from fastapi import FastAPI
+from starlette.middleware import Middleware
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from app import routes
 
-app = FastAPI()
+middleware = [
+    Middleware(
+        TrustedHostMiddleware,
+        allowed_hosts=['*'],
+    ),
+    Middleware(SessionMiddleware, secret_key='p1ndar0ts')
+]
+
+app = FastAPI(middleware=middleware)
 
 
 def _configure_routes():

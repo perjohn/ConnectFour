@@ -15,7 +15,7 @@ def test_move_first_column():
     game.board_state.at[3, 1] = Player.YELLOW.value
 
     result = one_ply_bot.calculate_move(Player.RED)
-    assert result == 0
+    assert result.column == 0
 
 
 def test_move_second_column():
@@ -30,10 +30,10 @@ def test_move_second_column():
     game.board_state.at[3, 0] = Player.YELLOW.value
 
     result = one_ply_bot.calculate_move(Player.RED)
-    assert result == 1
+    assert result.column == 1
 
 
-def test_move_randomw():
+def test_move_random():
     game = Game()
     one_ply_bot = OnePlyBot(game)
 
@@ -45,4 +45,4 @@ def test_move_randomw():
     game.board_state.at[3, 0] = Player.YELLOW.value
 
     result = one_ply_bot.calculate_move(Player.RED)
-    assert 0 <= result < NR_OF_COLUMNS
+    assert 0 <= result.column < NR_OF_COLUMNS

@@ -8,7 +8,7 @@ def test_random_move_empty():
     random_bot = RandomBot(game)
 
     result = random_bot.calculate_move(Player.RED)
-    assert 0 <= result < NR_OF_COLUMNS
+    assert 0 <= result.column < NR_OF_COLUMNS
 
 
 def test_random_move_first_column_filled():
@@ -23,4 +23,4 @@ def test_random_move_first_column_filled():
     game.board_state.at[0, 0] = Player.YELLOW.value
 
     result = random_bot.calculate_move(Player.RED)
-    assert 1 <= result < NR_OF_COLUMNS
+    assert 1 <= result.column < NR_OF_COLUMNS
