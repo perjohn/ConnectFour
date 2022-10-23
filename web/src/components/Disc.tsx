@@ -10,7 +10,7 @@ const Disc = (props: DiscProps) => {
     const color = player;
 
     return (
-        <CircleIcon sx={{ fontSize: 75, color: {color}, padding: 0, margin: 0 }}/>
+        <CircleIcon sx={{ fontSize: 90, color: {color} }}/>
     )
 }
 

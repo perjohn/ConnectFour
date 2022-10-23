@@ -16,8 +16,9 @@ const rows = [
 const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.body}`]: {
         height: '110px',
-        width: '5em',
-        border: '2px solid gray'
+        width: '110px',
+        border: '2px solid gray',
+        padding: 'none'
     }
 }));
 
