@@ -23,6 +23,11 @@ const StyledTableCell = styled(TableCell)(() => ({
 }));
 
 const Board = () => {
+
+    const handleColumnClick = (colIndex: number) => {
+        console.log(`Clicked column ${colIndex}`);
+    }
+
     return (
         <TableContainer sx={{width: '770px'}}>
             <Table padding='none' aria-label="Het bord">
@@ -33,7 +38,7 @@ const Board = () => {
                             sx={{  }}
                         >
                             {cells.map((cell, colIndex) => (
-                                <StyledTableCell align='center'>
+                                <StyledTableCell key={`${rowIndex}-${colIndex}`} align='center' onClick={() => handleColumnClick(colIndex)}>
                                     {cell == 0 ? '' : <Disc player={cell === -1 ? 'yellow' : 'red'}/>}
                                 </StyledTableCell>
                             ))}
