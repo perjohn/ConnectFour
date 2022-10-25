@@ -24,7 +24,7 @@ const StyledTableCell = styled(TableCell)(() => ({
 
 const Board = () => {
     return (
-        <TableContainer style={{width: '770px'}}>
+        <TableContainer sx={{width: '770px'}}>
             <Table padding='none' aria-label="Het bord">
                 <TableBody>
                     {rows.map((cells, rowIndex) => (

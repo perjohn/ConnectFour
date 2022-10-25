@@ -10,6 +10,9 @@ const darkTheme = createTheme({
         primary: {
           main: '#232323'
         },
+        secondary: {
+            main: '#278a25'
+        },
   },
 });
 
